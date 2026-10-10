@@ -1,0 +1,6490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Intox Furniture | Furniture Manufacturers</title>
+
+<style>
+
+:root{
+    --black:#111;
+    --dark:#181818;
+    --red:#ef2935;
+    --white:#fff;
+    --light:#f4f4f2;
+    --gray:#777;
+    --line:#ddd;
+    --max:1400px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#fff;
+    color:#111;
+    overflow-x:hidden;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:inherit;
+}
+
+/* =========================
+HEADER
+========================= */
+
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:82px;
+    z-index:1000;
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(0,0,0,.08);
+    transition:.4s;
+}
+
+.header.scrolled{
+    height:70px;
+    box-shadow:0 5px 30px rgba(0,0,0,.08);
+}
+
+.header-inner{
+    width:min(var(--max),92%);
+    height:100%;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    width:145px;
+}
+
+.logo img{
+    width:100%;
+}
+
+.nav{
+    display:flex;
+    gap:40px;
+    align-items:center;
+}
+
+.nav a{
+    font-size:12px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    position:relative;
+    padding:8px 0;
+}
+
+.nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0;
+    height:2px;
+    background:var(--red);
+    transition:.3s;
+}
+
+.nav a:hover::after,
+.nav a.active::after{
+    width:100%;
+}
+
+.header-contact{
+    padding:13px 20px;
+    background:#111;
+    color:#fff;
+    font-size:10px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    transition:.3s;
+}
+
+.header-contact:hover{
+    background:var(--red);
+}
+
+/* =========================
+MOBILE MENU
+========================= */
+
+.menu-btn{
+    display:none;
+    width:44px;
+    height:44px;
+    border:1px solid #ddd;
+    background:#fff;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+}
+
+.menu-btn span{
+    width:21px;
+    height:2px;
+    background:#111;
+    transition:.3s;
+}
+
+.menu-btn.active span:nth-child(1){
+    transform:rotate(45deg) translate(5px,5px);
+}
+
+.menu-btn.active span:nth-child(2){
+    opacity:0;
+}
+
+.menu-btn.active span:nth-child(3){
+    transform:rotate(-45deg) translate(5px,-5px);
+}
+
+.mobile-nav{
+    position:fixed;
+    inset:0;
+    background:#111;
+    color:#fff;
+    z-index:900;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transform:translateY(-100%);
+    transition:.6s;
+    overflow-y:auto;
+}
+
+.mobile-nav.active{
+    transform:translateY(0);
+}
+
+.mobile-nav ul{
+    list-style:none;
+    text-align:center;
+    padding:100px 20px;
+}
+
+.mobile-nav li{
+    margin:16px 0;
+}
+
+.mobile-nav a{
+    font-size:38px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.mobile-nav a:hover{
+    color:var(--red);
+}
+
+.mobile-product-links{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    max-width:760px;
+    margin:15px auto 0;
+}
+
+.mobile-product-links .mobile-parent{
+    color:#fff;
+    font-size:15px!important;
+    font-weight:bold!important;
+    margin-top:8px;
+}
+
+.mobile-product-links .mobile-child{
+    color:#aaa;
+    font-size:12px!important;
+    font-weight:normal!important;
+}
+
+.mobile-product-links a:hover{
+    color:var(--red);
+}
+
+
+/* HOME HERO IMAGE SLIDER */
+.hero-slides{
+    position:absolute;
+    inset:0;
+}
+.hero-slide{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity 1s ease, visibility 1s ease;
+}
+.hero-slide.active{
+    opacity:1;
+    visibility:visible;
+}
+.hero-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    animation:heroZoom 12s ease-in-out infinite alternate;
+}
+.hero-overlay{
+    background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,.12) 100%);
+}
+.hero-slider-controls{
+    position:absolute;
+    right:7%;
+    bottom:75px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    z-index:5;
+}
+.hero-slider-btn{
+    width:42px;
+    height:42px;
+    border:1px solid rgba(255,255,255,.7);
+    background:rgba(0,0,0,.25);
+    color:#fff;
+    font-size:20px;
+    cursor:pointer;
+    transition:.3s;
+}
+.hero-slider-btn:hover{
+    background:var(--red);
+    border-color:var(--red);
+}
+.hero-slider-dots{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin:0 5px;
+}
+.hero-slider-dot{
+    width:7px;
+    height:7px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.5);
+    cursor:pointer;
+    transition:.3s;
+}
+.hero-slider-dot.active{
+    width:24px;
+    border-radius:10px;
+    background:var(--red);
+}
+@media(max-width:600px){
+    .hero-slider-controls{
+        right:6%;
+        bottom:65px;
+    }
+    .hero-slider-btn{
+        width:36px;
+        height:36px;
+    }
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+    width:100%;
+    height:100vh;
+    min-height:700px;
+    position:relative;
+    overflow:hidden;
+    background:#111;
+}
+
+.hero-image{
+    position:absolute;
+    inset:0;
+}
+
+.hero-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    animation:heroZoom 12s ease-in-out infinite alternate;
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:url(./images/banner-1.jpg) no-repeat;
+    background-size:cover;
+    background-position:center;
+    /* opacity:.35; */
+}
+
+.hero-content{
+    position:absolute;
+    left:7%;
+    top:50%;
+    transform:translateY(-50%);
+    color:white;
+    max-width:700px;
+}
+
+.hero-small{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:25px;
+    animation:fadeUp 1s .2s both;
+}
+
+.hero-small span{
+    width:35px;
+    height:2px;
+    background:var(--red);
+}
+
+.hero h1{
+    font-size:clamp(55px,8vw,115px);
+    line-height:.86;
+    letter-spacing:-7px;
+    animation:fadeUp 1s .35s both;
+}
+
+.hero h1 strong{
+    color:var(--red);
+}
+
+.hero-description{
+    max-width:520px;
+    margin-top:30px;
+    font-size:15px;
+    line-height:1.8;
+    color:#eee;
+    animation:fadeUp 1s .55s both;
+}
+
+.hero-button{
+    display:inline-flex;
+    gap:25px;
+    align-items:center;
+    margin-top:30px;
+    padding:16px 23px;
+    background:#fff;
+    color:#111;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    animation:fadeUp 1s .7s both;
+    transition:.3s;
+}
+
+.hero-button:hover{
+    background:var(--red);
+    color:#fff;
+}
+
+.hero-bottom{
+    position:absolute;
+    left:7%;
+    right:7%;
+    bottom:35px;
+    display:flex;
+    justify-content:space-between;
+    color:#fff;
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.scroll-text{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.scroll-line{
+    width:40px;
+    height:1px;
+    background:#fff;
+}
+
+/* =========================
+INTRO
+========================= */
+
+.intro{
+    padding:110px 0;
+    background:#fff;
+}
+
+.container{
+    width:min(var(--max),92%);
+    margin:auto;
+}
+
+.intro-grid{
+    display:grid;
+    grid-template-columns:1fr 1.2fr;
+    gap:100px;
+    align-items:start;
+}
+
+.eyebrow{
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:#777;
+    margin-bottom:18px;
+}
+
+.eyebrow::before{
+    content:"";
+    width:28px;
+    height:2px;
+    background:var(--red);
+    display:inline-block;
+    margin-right:10px;
+    vertical-align:middle;
+}
+
+.intro-title{
+    font-size:clamp(38px,5vw,70px);
+    line-height:.95;
+    letter-spacing:-4px;
+}
+
+.intro-title span,
+.section-title span,
+.company-content h2 span,
+.video-overlay span,
+.contact-box h2 span{
+    color:var(--red);
+}
+
+.intro-text{
+    font-size:17px;
+    line-height:1.9;
+    color:#666;
+}
+
+.intro-text p{
+    margin-bottom:20px;
+}
+
+/* =========================
+MARQUEE
+========================= */
+
+.marquee{
+    background:#111;
+    color:#fff;
+    overflow:hidden;
+    padding:20px 0;
+}
+
+.marquee-track{
+    display:flex;
+    width:max-content;
+    animation:marquee 25s linear infinite;
+}
+
+.marquee-item{
+    display:flex;
+    gap:35px;
+    align-items:center;
+    padding:0 35px;
+    font-size:12px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:bold;
+}
+
+.marquee-item span{
+    color:var(--red);
+}
+
+/* =========================
+PRODUCT SECTION
+========================= */
+
+.products{
+    padding:110px 0;
+    background:var(--light);
+    scroll-margin-top:82px;
+}
+
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:45px;
+    gap:40px;
+}
+
+.section-title{
+    font-size:clamp(40px,5vw,70px);
+    line-height:.9;
+    letter-spacing:-4px;
+}
+
+.section-description{
+    max-width:420px;
+    color:#777;
+    line-height:1.8;
+    font-size:14px;
+}
+
+/* =========================
+LEFT CATEGORY + RIGHT PRODUCTS
+========================= */
+
+.products-layout{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:35px;
+    align-items:start;
+}
+
+/* =========================
+CATEGORY LEFT PANEL
+========================= */
+
+.category-sidebar{
+    position:sticky;
+    top:100px;
+    background:#fff;
+    border:1px solid #ddd;
+    padding:18px;
+}
+
+.category-sidebar-title{
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:#777;
+    margin-bottom:15px;
+    padding-bottom:15px;
+    border-bottom:1px solid #ddd;
+}
+
+.category-group{
+    margin-bottom:12px;
+}
+
+.category-group:last-child{
+    margin-bottom:0;
+}
+
+.category-parent{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border:0;
+    background:#111;
+    color:#fff;
+    padding:15px 16px;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.category-parent:hover,
+.category-parent.active{
+    background:var(--red);
+}
+
+.category-parent-icon{
+    font-size:17px;
+    line-height:1;
+    transition:.3s;
+}
+
+.category-parent.active .category-parent-icon{
+    transform:rotate(45deg);
+}
+
+.category-sub-list{
+    display:flex;
+    flex-direction:column;
+    gap:1px;
+    margin-top:6px;
+}
+
+.category-btn{
+    width:100%;
+    text-align:left;
+    border:0;
+    border-left:3px solid transparent;
+    background:#f4f4f2;
+    color:#555;
+    padding:13px 12px;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.8px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.category-btn:hover{
+    background:#eee;
+    color:#111;
+}
+
+.category-btn.active{
+    background:#111;
+    color:#fff;
+    border-left-color:var(--red);
+}
+
+/* =========================
+RIGHT PRODUCT AREA
+========================= */
+
+.product-area{
+    min-width:0;
+}
+
+.product-area-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.product-result-title{
+    font-size:13px;
+    font-weight:bold;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+}
+
+.product-result-title span{
+    color:var(--red);
+}
+
+/* =========================
+PRODUCT SCROLL AREA
+========================= */
+
+.product-scroll-wrapper{
+    position:relative;
+    width:100%;
+}
+
+.product-scroll-controls{
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:8px;
+    margin-bottom:15px;
+}
+
+.product-scroll-btn{
+    position:static;
+    width:45px;
+    height:45px;
+    border:1px solid #111;
+    background:#fff;
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    cursor:pointer;
+    transition:.3s ease;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.product-scroll-btn:hover{
+    background:#111;
+    color:#fff;
+    border-color:#111;
+}
+
+.product-scroll-btn:active{
+    transform:scale(.94);
+}
+
+.product-scroll-btn.disabled{
+    opacity:.25;
+    pointer-events:none;
+}
+
+/* =========================
+PRODUCT HORIZONTAL SCROLL
+========================= */
+
+.product-grid{
+    display:flex;
+    gap:18px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-behavior:smooth;
+    scroll-snap-type:x mandatory;
+    padding:5px 5px 30px;
+    scrollbar-width:none;
+    overscroll-behavior-x:contain;
+}
+
+.product-grid::-webkit-scrollbar{
+    display:none;
+}
+
+.product-card{
+    flex:0 0 calc((100% - 36px) / 3);
+    min-width:0;
+    scroll-snap-align:start;
+    background:#fff;
+    overflow:hidden;
+    transition:
+        opacity .45s ease,
+        transform .45s ease,
+        box-shadow .45s ease;
+}
+
+.product-card.hide{
+    display:none!important;
+}
+
+.product-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 35px rgba(0,0,0,.10);
+}
+
+.product-image{
+    height:245px;
+    overflow:hidden;
+    position:relative;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:10px;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+    transition:.5s ease;
+}
+
+.product-card:hover .product-image img{
+    transform:scale(1.02);
+}
+
+.product-number{
+    position:absolute;
+    top:12px;
+    left:12px;
+    width:30px;
+    height:30px;
+    background:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:9px;
+    font-weight:bold;
+    z-index:2;
+}
+
+.product-info{
+    padding:16px;
+}
+
+.product-category{
+    color:var(--red);
+    font-size:8px;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    margin-bottom:7px;
+}
+
+.product-info h3{
+    font-size:16px;
+    margin-bottom:7px;
+}
+
+.product-info p{
+    color:#888;
+    font-size:11px;
+    line-height:1.6;
+}
+
+/* =========================
+PRODUCT DROPDOWN
+========================= */
+
+.product-menu{
+    position:relative;
+}
+
+.product-menu>a{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.product-menu>a::after{
+    display:none!important;
+}
+
+.dropdown-arrow{
+    font-size:9px;
+    transition:.3s;
+}
+
+.product-menu:hover .dropdown-arrow,
+.product-menu.open .dropdown-arrow{
+    transform:rotate(180deg);
+}
+
+.product-dropdown{
+    position:absolute;
+    top:100%;
+    left:-20px;
+    width:280px;
+    padding:12px 0;
+    background:#fff;
+    box-shadow:0 18px 45px rgba(0,0,0,.15);
+    border-top:2px solid var(--red);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(12px);
+    transition:.25s ease;
+    z-index:1100;
+}
+
+.product-menu:hover .product-dropdown,
+.product-menu.open .product-dropdown{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.product-dropdown-item{
+    position:relative;
+}
+
+.product-dropdown-item>a{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 20px;
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    white-space:nowrap;
+}
+
+.product-dropdown-item>a::after{
+    display:none!important;
+}
+
+.product-dropdown-item:hover>a,
+.product-dropdown-item.open>a{
+    background:#f4f4f2;
+    color:var(--red);
+}
+
+.product-submenu{
+    position:absolute;
+    top:-12px;
+    left:100%;
+    width:280px;
+    padding:12px 0;
+    background:#fff;
+    box-shadow:0 18px 45px rgba(0,0,0,.15);
+    border-top:2px solid var(--red);
+    opacity:0;
+    visibility:hidden;
+    transform:translateX(10px);
+    transition:.25s ease;
+    z-index:1200;
+}
+
+.product-dropdown-item:hover .product-submenu,
+.product-dropdown-item.open .product-submenu{
+    opacity:1;
+    visibility:visible;
+    transform:translateX(0);
+}
+
+.product-submenu a{
+    display:block;
+    padding:12px 20px;
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.product-submenu a:hover{
+    background:#f4f4f2;
+    color:var(--red);
+}
+
+/* =========================
+COMPANY
+========================= */
+
+.company{
+    padding:120px 0;
+}
+
+.company-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+}
+
+.company-image{
+    height:600px;
+    overflow:hidden;
+}
+
+.company-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.8s;
+}
+
+.company-image:hover img{
+    transform:scale(1.05);
+}
+
+.company-content h2{
+    font-size:45px;
+    line-height:1;
+    letter-spacing:-3px;
+    margin-bottom:25px;
+}
+
+.company-content p{
+    color:#666;
+    line-height:1.9;
+    margin-bottom:18px;
+}
+
+/* =========================
+VIDEO
+========================= */
+
+.video-section{
+    height:75vh;
+    min-height:500px;
+    position:relative;
+    overflow:hidden;
+    background:#111;
+}
+
+.video-section video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:.65;
+}
+
+.video-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#fff;
+}
+
+.video-overlay h2{
+    font-size:clamp(50px,8vw,110px);
+    line-height:.82;
+    letter-spacing:-6px;
+}
+
+/* =========================
+GALLERY
+========================= */
+
+.gallery{
+    padding:120px 0;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr .8fr;
+    grid-template-rows:300px 300px;
+    gap:12px;
+}
+
+.gallery-item{
+    overflow:hidden;
+    position:relative;
+}
+
+.gallery-item:first-child{
+    grid-row:span 2;
+}
+
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.8s;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.06);
+}
+
+.gallery-label{
+    position:absolute;
+    left:15px;
+    bottom:15px;
+    background:#fff;
+    padding:10px 14px;
+    font-size:10px;
+    text-transform:uppercase;
+    font-weight:bold;
+}
+
+/* =========================
+STATS
+========================= */
+
+.stats{
+    background:var(--red);
+    color:#fff;
+    padding:70px 0;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+}
+
+.stat{
+    padding:0 30px;
+    border-right:1px solid rgba(255,255,255,.4);
+}
+
+.stat:last-child{
+    border:0;
+}
+
+.stat strong{
+    font-size:55px;
+    display:block;
+}
+
+.stat span{
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+/* =========================
+CONTACT
+========================= */
+
+.contact{
+    padding:120px 0;
+    background:#f4f4f2;
+}
+
+.contact-box{
+    padding:75px;
+    background:#111;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+}
+
+.contact-box h2{
+    font-size:clamp(45px,6vw,80px);
+    line-height:.9;
+    letter-spacing:-5px;
+}
+
+.contact-button{
+    border:1px solid #fff;
+    color:#fff;
+    padding:17px 25px;
+    font-size:10px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    transition:.3s;
+}
+
+.contact-button:hover{
+    background:#fff;
+    color:#111;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+.footer{
+    background:#111;
+    color:#fff;
+    padding:70px 0 30px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:50px;
+    padding-bottom:50px;
+    border-bottom:1px solid #333;
+}
+
+.footer-logo{
+    width:145px;
+    background:#fff;
+    padding:5px;
+    margin-bottom:25px;
+}
+
+.footer p{
+    color:#888;
+    max-width:330px;
+    line-height:1.8;
+    font-size:13px;
+}
+
+.footer h4{
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:20px;
+}
+
+.footer ul{
+    list-style:none;
+}
+
+.footer li{
+    margin-bottom:12px;
+}
+
+.footer li a{
+    color:#888;
+    font-size:13px;
+    transition:.3s;
+}
+
+.footer li a:hover{
+    color:var(--red);
+}
+
+.footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    padding-top:25px;
+    color:#666;
+    font-size:10px;
+}
+
+/* =========================
+BACK TOP
+========================= */
+
+.back-top{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:45px;
+    height:45px;
+    border:0;
+    background:#111;
+    color:#fff;
+    cursor:pointer;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:500;
+}
+
+.back-top.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.back-top:hover{
+    background:var(--red);
+}
+
+/* =========================
+ANIMATION
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes heroZoom{
+
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.07);
+    }
+
+}
+
+@keyframes marquee{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:1300px){
+
+    .products-layout{
+        grid-template-columns:250px 1fr;
+        gap:25px;
+    }
+
+    .product-card{
+        flex:0 0 calc((100% - 36px) / 3);
+    }
+
+    .product-image{
+        height:240px;
+    }
+
+}
+
+@media(max-width:1100px){
+
+    .nav,
+    .header-contact{
+        display:none;
+    }
+
+    .menu-btn{
+        display:flex;
+    }
+
+    .products-layout{
+        grid-template-columns:230px 1fr;
+        gap:22px;
+    }
+
+    .category-sidebar{
+        top:90px;
+    }
+
+    .product-card{
+        flex:0 0 calc((100% - 18px) / 2);
+    }
+
+    .product-image{
+        height:250px;
+    }
+
+    .intro-grid{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .company-grid{
+        grid-template-columns:1fr;
+    }
+
+    .company-image{
+        height:500px;
+    }
+
+    .gallery-grid{
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:300px 300px 300px;
+    }
+
+    .gallery-item:first-child{
+        grid-row:span 2;
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:30px;
+    }
+
+    .stat{
+        border:0;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .product-dropdown{
+        display:none;
+    }
+
+}
+
+/* =========================
+TABLET
+========================= */
+
+@media(max-width:800px){
+
+    .products-layout{
+        grid-template-columns:1fr;
+    }
+
+    .category-sidebar{
+        position:relative;
+        top:auto;
+        width:100%;
+    }
+
+    .category-sidebar-title{
+        margin-bottom:12px;
+    }
+
+    .category-group{
+        margin-bottom:10px;
+    }
+
+    .category-sub-list{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:5px;
+    }
+
+    .category-btn{
+        min-height:45px;
+    }
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .header{
+        height:70px;
+    }
+
+    .logo{
+        width:120px;
+    }
+
+    .hero{
+        min-height:650px;
+    }
+
+    .hero h1{
+        font-size:55px;
+        letter-spacing:-4px;
+    }
+
+    .hero-description{
+        font-size:13px;
+    }
+
+    .hero-bottom{
+        bottom:20px;
+    }
+
+    .intro,
+    .products,
+    .company,
+    .gallery,
+    .contact{
+        padding:80px 0;
+    }
+
+    .intro-title{
+        font-size:48px;
+    }
+
+    .section-heading{
+        display:block;
+    }
+
+    .section-description{
+        margin-top:25px;
+    }
+
+    .products-layout{
+        display:flex;
+        flex-direction:column;
+        gap:25px;
+    }
+
+    .category-sidebar{
+        width:100%;
+        padding:12px;
+    }
+
+    .category-sub-list{
+        display:flex;
+        flex-direction:column;
+        gap:5px;
+    }
+
+    .category-parent{
+        padding:14px 15px;
+        font-size:10px;
+    }
+
+    .category-btn{
+        width:100%;
+        padding:12px 14px;
+        font-size:9px;
+    }
+
+    .product-area{
+        width:100%;
+    }
+
+    .product-area-heading{
+        display:block;
+        margin-bottom:10px;
+    }
+
+    .product-scroll-controls{
+        margin-bottom:12px;
+        gap:6px;
+    }
+
+    .product-scroll-btn{
+        width:40px;
+        height:40px;
+        font-size:18px;
+    }
+
+    .product-grid{
+        gap:12px;
+        padding:5px 0 30px;
+        scroll-snap-type:x mandatory;
+    }
+
+    .product-card{
+        flex:0 0 calc(100% - 20px);
+        scroll-snap-align:start;
+    }
+
+    .product-image{
+        height:220px;
+    }
+
+    .product-info{
+        padding:14px;
+    }
+
+    .product-info h3{
+        font-size:15px;
+    }
+
+    .product-info p{
+        font-size:10px;
+    }
+
+    .product-category{
+        font-size:8px;
+    }
+
+    .company-image{
+        height:400px;
+    }
+
+    .company-content h2{
+        font-size:38px;
+    }
+
+    .video-section{
+        height:60vh;
+        min-height:420px;
+    }
+
+    .video-overlay h2{
+        font-size:55px;
+    }
+
+    .gallery-grid{
+        grid-template-columns:1fr;
+        grid-template-rows:350px 220px 220px 220px 220px;
+    }
+
+    .gallery-item:first-child{
+        grid-row:auto;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stat{
+        padding:5px 10px;
+    }
+
+    .stat strong{
+        font-size:40px;
+    }
+
+    .contact-box{
+        padding:45px 25px;
+        display:block;
+    }
+
+    .contact-button{
+        display:inline-block;
+        margin-top:30px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .footer-bottom{
+        display:block;
+        line-height:2;
+    }
+
+    .mobile-nav a{
+        font-size:30px;
+    }
+
+}
+
+/* =========================
+SMALL MOBILE
+========================= */
+
+@media(max-width:430px){
+
+    .product-card{
+        flex:0 0 100%;
+    }
+
+    .product-image{
+        height:270px;
+    }
+
+    .product-info{
+        padding:18px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+HEADER
+========================= -->
+
+<header class="header" id="header">
+
+    <div class="header-inner">
+
+        <a href="#home" class="logo">
+            <img src="logo.png" alt="Intox Furniture">
+        </a>
+
+        <nav class="nav">
+
+            <a href="#home" class="active">Home</a>
+
+            <a href="#company">Company</a>
+
+            <div class="product-menu" id="productMenu">
+
+                <a href="#products" id="productsMainLink">
+                    Products
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+
+                <div class="product-dropdown">
+
+                    <!-- FURNITURE -->
+
+                    <div class="product-dropdown-item">
+
+                        <a href="#products"
+                           class="product-filter-link"
+                           data-filter="furniture">
+
+                            Furniture
+
+                            <span>›</span>
+
+                        </a>
+
+                        <div class="product-submenu">
+
+                            <a href="#products"
+                               class="product-filter-link"
+                               data-filter="home-furniture">
+                                Home Furniture
+                            </a>
+
+                            <a href="#products"
+                               class="product-filter-link"
+                               data-filter="office-furniture">
+                                Office Furnitures
+                            </a>
+
+                            <a href="#products"
+                               class="product-filter-link"
+                               data-filter="school-furniture">
+                                School &amp; Colleges Furniture
+                            </a>
+
+                            <a href="#products"
+                               class="product-filter-link"
+                               data-filter="hospital-furniture">
+                                Hospital Furniture
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <!-- EXECUTIVE CHAIRS -->
+
+                    <div class="product-dropdown-item">
+
+                        <a href="#products"
+                           class="product-filter-link"
+                           data-filter="executive">
+
+                            Executive Chairs
+
+                            <span>›</span>
+
+                        </a>
+
+                        <div class="product-submenu">
+
+                            <a href="#products"
+                               class="product-filter-link"
+                               data-filter="flexo">
+                                Flexo Series
+                            </a>
+
+                            <a href="#products"
+                               class="product-filter-link"
+                               data-filter="prime">
+                                Prime Series
+                            </a>
+
+                            <a href="#products"
+                               class="product-filter-link"
+                               data-filter="comfo">
+                                Comfo Series
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <!-- PREMIUM CHAIR -->
+                    <div class="product-dropdown-item">
+                        <a href="#products"
+                           class="product-filter-link"
+                           data-filter="premium-chair">
+                            Premium Chair
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <a href="#gallery">Gallery</a>
+
+            <a href="#contact">Contact Us</a>
+
+        </nav>
+
+        <a href="#contact" class="header-contact">
+            Get In Touch
+        </a>
+
+        <button class="menu-btn"
+                id="menuBtn"
+                aria-label="Open Menu">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+MOBILE MENU
+========================= -->
+
+<div class="mobile-nav" id="mobileNav">
+
+    <ul>
+
+        <li>
+            <a href="#home">Home</a>
+        </li>
+
+        <li>
+            <a href="#company">Company</a>
+        </li>
+
+        <li class="mobile-product-item">
+
+            <a href="#products">
+                Products
+            </a>
+
+            <div class="mobile-product-links">
+
+                <a href="#products"
+                   class="product-filter-link mobile-parent"
+                   data-filter="furniture">
+                    Furniture
+                </a>
+
+                <a href="#products"
+                   class="product-filter-link mobile-child"
+                   data-filter="home-furniture">
+                    Home Furniture
+                </a>
+
+                <a href="#products"
+                   class="product-filter-link mobile-child"
+                   data-filter="office-furniture">
+                    Office Furnitures
+                </a>
+
+                <a href="#products"
+                   class="product-filter-link mobile-child"
+                   data-filter="school-furniture">
+                    School &amp; Colleges Furniture
+                </a>
+
+                <a href="#products"
+                   class="product-filter-link mobile-child"
+                   data-filter="hospital-furniture">
+                    Hospital Furniture
+                </a>
+
+                <a href="#products"
+                   class="product-filter-link mobile-parent"
+                   data-filter="executive">
+                    Executive Chairs
+                </a>
+
+                <a href="#products"
+                   class="product-filter-link mobile-child"
+                   data-filter="flexo">
+                    Flexo Series
+                </a>
+
+                <a href="#products"
+                   class="product-filter-link mobile-child"
+                   data-filter="prime">
+                    Prime Series
+                </a>
+
+                <a href="#products"
+                   class="product-filter-link mobile-child"
+                   data-filter="comfo">
+                    Comfo Series
+                </a>
+
+                <a href="#products"
+                   class="product-filter-link mobile-parent"
+                   data-filter="premium-chair">
+                    Premium Chair
+                </a>
+
+            </div>
+
+        </li>
+
+        <li>
+            <a href="#gallery">Gallery</a>
+        </li>
+
+        <li>
+            <a href="#contact">Contact Us</a>
+        </li>
+
+    </ul>
+
+</div>
+
+
+<!-- =========================
+HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-image hero-slides" id="heroSlides">
+        <div class="hero-slide active">
+            <img src="images/furniture-hero.jpg" alt="Intox Furniture collection">
+        </div>
+        <div class="hero-slide">
+            <img src="./images/home-banner-02.png" alt="Modern home furniture">
+        </div>
+        <div class="hero-slide">
+            <img src="./images/banner-1.png" alt="Premium furniture collection">
+        </div>
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-small">
+
+            <span></span>
+
+            Furniture Manufacturers
+
+        </div>
+
+        <h1>
+            Furniture<br>
+            That <strong>Defines</strong><br>
+            Your Space.
+        </h1>
+
+        <p class="hero-description">
+            Premium furniture designed and manufactured
+            with precision, quality materials and timeless
+            craftsmanship.
+        </p>
+
+        <a href="#products"
+           class="hero-button">
+            Explore Collection →
+        </a>
+
+    </div>
+
+    <div class="hero-slider-controls" aria-label="Home banner controls">
+        <button class="hero-slider-btn" id="heroPrev" type="button" aria-label="Previous image">‹</button>
+        <div class="hero-slider-dots" id="heroSliderDots" aria-label="Choose banner">
+            <button class="hero-slider-dot active" type="button" aria-label="Show image 1"></button>
+            <button class="hero-slider-dot" type="button" aria-label="Show image 2"></button>
+            <button class="hero-slider-dot" type="button" aria-label="Show image 3"></button>
+        </div>
+        <button class="hero-slider-btn" id="heroNext" type="button" aria-label="Next image">›</button>
+    </div>
+
+    <div class="hero-bottom">
+
+        <div>
+            INTELLIGENT DESIGN
+        </div>
+
+        <div class="scroll-text">
+
+            Scroll
+
+            <span class="scroll-line"></span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+INTRO
+========================= -->
+
+<section class="intro">
+
+    <div class="container">
+
+        <div class="intro-grid">
+
+            <div class="reveal">
+
+                <div class="eyebrow">
+                    Who We Are
+                </div>
+
+                <h2 class="intro-title">
+                    Designed For<br>
+                    <span>Modern Living.</span>
+                </h2>
+
+            </div>
+
+            <div class="intro-text reveal">
+
+                <p>
+                    We are a furniture manufacturing company
+                    focused on creating beautiful, functional
+                    and durable furniture for contemporary
+                    spaces.
+                </p>
+
+                <p>
+                    From carefully selected materials to
+                    precision manufacturing and finishing,
+                    every piece is developed with attention
+                    to detail.
+                </p>
+
+                <p>
+                    Our collections are designed for homes,
+                    offices, hospitality spaces and commercial
+                    interiors.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+MARQUEE
+========================= -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <div class="marquee-item">
+            Premium Furniture <span>✦</span>
+        </div>
+
+        <div class="marquee-item">
+            Modern Design <span>✦</span>
+        </div>
+
+        <div class="marquee-item">
+            Quality Craftsmanship <span>✦</span>
+        </div>
+
+        <div class="marquee-item">
+            Custom Furniture <span>✦</span>
+        </div>
+
+        <div class="marquee-item">
+            Premium Furniture <span>✦</span>
+        </div>
+
+        <div class="marquee-item">
+            Modern Design <span>✦</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+PRODUCTS
+========================= -->
+
+<section class="products" id="products">
+
+    <div class="container">
+
+        <div class="section-heading reveal">
+
+            <div>
+
+                <div class="eyebrow">
+                    Our Products
+                </div>
+
+                <h2 class="section-title">
+                    Explore Our<br>
+                    <span>Collections.</span>
+                </h2>
+
+            </div>
+
+            <p class="section-description">
+                Select a category from the left side
+                to explore our furniture collections.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+        LEFT CATEGORY / RIGHT PRODUCTS
+        ========================= -->
+
+        <div class="products-layout">
+
+
+            <!-- =========================
+            LEFT CATEGORY SIDEBAR
+            ========================= -->
+
+            <aside class="category-sidebar reveal">
+
+                <div class="category-sidebar-title">
+                    Product Categories
+                </div>
+
+
+                <!-- FURNITURE -->
+
+                <div class="category-group">
+
+                    <button class="category-parent"
+                            data-group="furniture">
+
+                        <span>
+                            Furniture
+                        </span>
+
+                        <span class="category-parent-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="category-sub-list">
+
+                        <button class="category-btn"
+                                data-category="home-furniture">
+                            Home Furniture
+                        </button>
+
+                        <button class="category-btn"
+                                data-category="office-furniture">
+                            Office Furnitures
+                        </button>
+
+                        <button class="category-btn"
+                                data-category="school-furniture">
+                            School &amp; Colleges Furniture
+                        </button>
+
+                        <button class="category-btn"
+                                data-category="hospital-furniture">
+                            Hospital Furniture
+                        </button>
+
+                    </div>
+
+                </div>
+   <!-- PREMIUM CHAIR -->
+                <div class="category-group">
+                    <button class="category-parent" data-group="premium-chair">
+                        <span>Premium Chair</span>
+                        <span class="category-parent-icon">+</span>
+                    </button>
+                </div>
+
+                <!-- EXECUTIVE CHAIRS -->
+
+                <div class="category-group">
+
+                    <button class="category-parent"
+                            data-group="executive">
+
+                        <span>
+                            Executive Chairs
+                        </span>
+
+                        <span class="category-parent-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="category-sub-list">
+
+                        <button class="category-btn"
+                                data-category="flexo">
+                            Flexo Series
+                        </button>
+
+                        <button class="category-btn"
+                                data-category="prime">
+                            Prime Series
+                        </button>
+
+                        <button class="category-btn"
+                                data-category="comfo">
+                            Comfo Series
+                        </button>
+
+                    </div>
+
+                </div>
+
+             
+
+            </aside>
+
+
+            <!-- =========================
+            RIGHT PRODUCT AREA
+            ========================= -->
+
+            <div class="product-area">
+
+                <div class="product-area-heading">
+
+                    <div class="product-result-title">
+                        Select a category
+                        <span>→</span>
+                    </div>
+
+                </div>
+
+                <div class="product-scroll-wrapper">
+
+                    <div class="product-scroll-controls">
+
+                        <button
+                            class="product-scroll-btn"
+                            id="productScrollLeft"
+                            aria-label="Previous Products">
+                            ←
+                        </button>
+
+                        <button
+                            class="product-scroll-btn"
+                            id="productScrollRight"
+                            aria-label="Next Products">
+                            →
+                        </button>
+
+                    </div>
+
+
+                    <div class="product-grid"
+                         id="productGrid">
+
+
+                        <!-- =========================
+                        HOME FURNITURE
+                        ========================= -->
+
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    01
+                                </span>
+
+                                <img src="./images/home-furniture-01.jpg"
+                                     alt="Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Furniture Collection
+                                </h3>
+
+                                <p>
+                                    Premium furniture collection
+                                    designed for modern homes.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    02
+                                </span>
+
+                                <img src="./images/home-furniture-02.jpg"
+                                     alt="Modern Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Modern Furniture
+                                </h3>
+
+                                <p>
+                                    Contemporary furniture for
+                                    stylish residential spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    03
+                                </span>
+
+                                <img src="./images/home-furniture-03.png"
+                                     alt="Premium Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Premium Collection
+                                </h3>
+
+                                <p>
+                                    Carefully designed furniture
+                                    with modern proportions.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    04
+                                </span>
+
+                                <img src="./images/home-furniture-04.jpeg"
+                                     alt="Contemporary Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Contemporary Series
+                                </h3>
+
+                                <p>
+                                    Functional furniture solutions
+                                    for contemporary homes.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    05
+                                </span>
+
+                                <img src="./images/home-furniture-05.jpg"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+<article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    06
+                                </span>
+
+                                <img src="./images/home-furniture-06.jpg"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+<article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    07
+                                </span>
+
+                                <img src="./images/home-furniture-07.jpg"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <!-- <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    08
+                                </span>
+
+                                <img src="./images/home-furniture-08.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article> -->
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    09
+                                </span>
+
+                                <img src="./images/home-furniture-09.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    10
+                                </span>
+
+                                <img src="./images/home-furniture-10.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    11
+                                </span>
+
+                                <img src="./images/home-furniture-11.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    12
+                                </span>
+
+                                <img src="./images/home-furniture-12.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    13
+                                </span>
+
+                                <img src="./images/home-furniture-13.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    14
+                                </span>
+
+                                <img src="./images/home-furniture-14.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    15
+                                </span>
+
+                                <img src="./images/home-furniture-15.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        
+<article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    16
+                                </span>
+
+                                <img src="./images/home-furniture-16.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    17
+                                </span>
+
+                                <img src="./images/home-furniture-17.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <!-- <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    18
+                                </span>
+
+                                <img src="./images/home-furniture-18.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article> -->
+                        <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    19
+                                </span>
+
+                                <img src="./images/home-furniture-19.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <!-- <article class="product-card reveal"
+                                 data-category="home-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    20
+                                </span>
+
+                                <img src="./images/home-furniture-20.png"
+                                     alt="Designer Home Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Home Furniture
+                                </div>
+
+                                <h3>
+                                    Designer Series
+                                </h3>
+
+                                <p>
+                                    Clean and elegant furniture
+                                    designed for modern spaces.
+                                </p>
+
+                            </div>
+
+                        </article> -->
+                        
+                        <!-- =========================
+                        OFFICE FURNITURE
+                        ========================= -->
+
+                        <article class="product-card reveal"
+                                 data-category="office-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    01
+                                </span>
+
+                                <img src="./images/school-furniture-01.jpg"
+                                     alt="Office Table">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Office Furnitures
+                                </div>
+
+                                <h3>
+                                    Office Table
+                                </h3>
+
+                                <p>
+                                    Elegant office table for
+                                    contemporary workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="office-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    02
+                                </span>
+
+                                <img src="./images/school-furniture-02.jpg"
+                                     alt="Office Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Office Furnitures
+                                </div>
+
+                                <h3>
+                                    Office Chair
+                                </h3>
+
+                                <p>
+                                    Comfortable office seating
+                                    with a clean profile.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="office-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    03
+                                </span>
+
+                                <img src="./images/school-furniture-03.jpg"
+                                     alt="Office Workstation">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Office Furnitures
+                                </div>
+
+                                <h3>
+                                    Workstation
+                                </h3>
+
+                                <p>
+                                    Functional workstation solution
+                                    for productive offices.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="office-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    04
+                                </span>
+
+                                <img src="./images/school-furniture-04.jpeg"
+                                     alt="Conference Table">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Office Furnitures
+                                </div>
+
+                                <h3>
+                                    Conference Table
+                                </h3>
+
+                                <p>
+                                    Professional table for modern
+                                    conference spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="office-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   05
+                                </span>
+
+                                <img src="./images/school-furniture-05.jpg"
+                                     alt="Manager Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Office Furnitures
+                                </div>
+
+                                <h3>
+                                    Manager Chair
+                                </h3>
+
+                                <p>
+                                    Ergonomic seating designed
+                                    for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <!-- =========================
+                        SCHOOL & COLLEGES
+                        ========================= -->
+
+                     
+
+                        <article class="product-card reveal"
+                                 data-category="school-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    01
+                                </span>
+
+                                <img src="./images/school-furniture-01.jpg"
+                                     alt="College Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    School &amp; Colleges Furniture
+                                </div>
+
+                                <h3>
+                                    College Furniture
+                                </h3>
+
+                                <p>
+                                    Functional furniture solutions
+                                    for educational environments.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="school-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    02
+                                </span>
+
+                                <img src="./images/school-furniture-02.jpg"
+                                     alt="Student Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    School &amp; Colleges Furniture
+                                </div>
+
+                                <h3>
+                                    Student Chair
+                                </h3>
+
+                                <p>
+                                    Durable seating for educational
+                                    environments.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="school-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    03
+                                </span>
+
+                                <img src="./images/school-furniture-03.jpg"
+                                     alt="Classroom Table">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    School &amp; Colleges Furniture
+                                </div>
+
+                                <h3>
+                                    Classroom Table
+                                </h3>
+
+                                <p>
+                                    Strong classroom furniture for
+                                    everyday educational use.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="school-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    04
+                                </span>
+
+                                <img src="./images/school-furniture-04.jpeg"
+                                     alt="Training Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    School &amp; Colleges Furniture
+                                </div>
+
+                                <h3>
+                                    Training Furniture
+                                </h3>
+
+                                <p>
+                                    Flexible furniture for training
+                                    and learning environments.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+ <article class="product-card reveal"
+                                 data-category="school-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    05
+                                </span>
+
+                                <img src="./images/school-furniture-05.jpg"
+                                     alt="Training Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    School &amp; Colleges Furniture
+                                </div>
+
+                                <h3>
+                                    Training Furniture
+                                </h3>
+
+                                <p>
+                                    Flexible furniture for training
+                                    and learning environments.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <!-- =========================
+                        HOSPITAL FURNITURE
+                        ========================= -->
+
+                        <article class="product-card reveal"
+                                 data-category="hospital-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   01
+                                </span>
+
+                                <img src="./images/hospital-furniture-01.png"
+                                     alt="Hospital Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Hospital Furniture
+                                </div>
+
+                                <h3>
+                                    Hospital Collection
+                                </h3>
+
+                                <p>
+                                    Practical furniture solutions
+                                    for healthcare spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="hospital-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    02
+                                </span>
+
+                                <img src="./images/hospital-furniture-02.png"
+                                     alt="Hospital Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Hospital Furniture
+                                </div>
+
+                                <h3>
+                                    Hospital Chair
+                                </h3>
+
+                                <p>
+                                    Comfortable seating designed
+                                    for healthcare spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="hospital-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    03
+                                </span>
+
+                                <img src="./images/hospital-furniture-03.png"
+                                     alt="Medical Table">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Hospital Furniture
+                                </div>
+
+                                <h3>
+                                    Medical Table
+                                </h3>
+
+                                <p>
+                                    Functional furniture designed
+                                    for healthcare environments.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="hospital-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    04
+                                </span>
+
+                                <img src="./images/hospital-furniture-04.png"
+                                     alt="Patient Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Hospital Furniture
+                                </div>
+
+                                <h3>
+                                    Patient Furniture
+                                </h3>
+
+                                <p>
+                                    Practical furniture solutions
+                                    for professional healthcare spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+<article class="product-card reveal"
+                                 data-category="hospital-furniture">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    05
+                                </span>
+
+                                <img src="./images/hospital-furniture-05.jpeg"
+                                     alt="Patient Furniture">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Hospital Furniture
+                                </div>
+
+                                <h3>
+                                    Patient Furniture
+                                </h3>
+
+                                <p>
+                                    Practical furniture solutions
+                                    for professional healthcare spaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+                        <!-- =========================
+                        FLEXO
+                        ========================= -->
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   01
+                                </span>
+
+                                <img src="./images/inx01.jpeg"
+                                     alt="Flexo Series Chair 1">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                 INX 01
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   02
+                                </span>
+
+                                <img src="./images/inx02.jpeg"
+                                     alt="Flexo Series Chair 2">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                    INX 02
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   03
+                                </span>
+
+                                <img src="./images/inx03.jpeg"
+                                     alt="Flexo Series Chair 3">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                    INX 03
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   04
+                                </span>
+
+                                <img src="./images/inx04.jpeg"
+                                     alt="Flexo Series Chair 4">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                    INX 04
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    05
+                                </span>
+
+                                <img src="./images/inx05.jpeg"
+                                     alt="Flexo Series Chair 5">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                    INX 05
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   06
+                                </span>
+
+                                <img src="./images/inx06.jpeg"
+                                     alt="Flexo Series Chair 6">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                  INX 06
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    07
+                                </span>
+
+                                <img src="./images/inx07.jpeg"
+                                     alt="Flexo Series Chair 7">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                   INX 07
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    08
+                                </span>
+
+                                <img src="./images/inx08.jpeg"
+                                     alt="Flexo Series Chair 8">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                   INX 08
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    09
+                                </span>
+
+                                <img src="./images/inx09.jpeg"
+                                     alt="Flexo Series Chair 9">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                  INX 09
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   10
+                                </span>
+
+                                <img src="./images/inx10.jpeg"
+                                     alt="Flexo Series Chair 10">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                   INX 10
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   11
+                                </span>
+
+                                <img src="./images/inx11.jpeg"
+                                     alt="Flexo Series Chair 11">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                    INX 11
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    12
+                                </span>
+
+                                <img src="./images/inx12.jpeg"
+                                     alt="Flexo Series Chair 12">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                    INX 12
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    13
+                                </span>
+
+                                <img src="./images/inx13.jpeg"
+                                     alt="Flexo Series Chair 13">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                    INX 13
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   14
+                                </span>
+
+                                <img src="./images/inx14.jpeg"
+                                     alt="Flexo Series Chair 14">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                   INX 14
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   15
+                                </span>
+
+                                <img src="./images/inx15.jpeg"
+                                     alt="Flexo Series Chair 15">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                    INX 15
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    16
+                                </span>
+
+                                <img src="./images/inx16.jpeg"
+                                     alt="Flexo Series Chair 16">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                   INX 16
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   17
+                                </span>
+
+                                <img src="./images/inx17.jpeg"
+                                     alt="Flexo Series Chair 17">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                   INX 17
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   18
+                                </span>
+
+                                <img src="./images/inx18.jpeg"
+                                     alt="Flexo Series Chair 18">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                   INX 18
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    19
+                                </span>
+
+                                <img src="./images/inx19.jpeg"
+                                     alt="Flexo Series Chair 19">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                    INX 19
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+
+                        <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   20
+                                </span>
+
+                                <img src="./images/inx20.jpeg"
+                                     alt="Flexo Series Chair 20">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                    INX 20
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+     <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    21
+                                </span>
+
+                                <img src="./images/inx21.png"
+                                     alt="Flexo Series Chair 20">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                   INX 21
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+                             <article class="product-card reveal"
+                                 data-category="flexo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    22
+                                </span>
+
+                                <img src="./images/inx22.webp"
+                                     alt="Flexo Series Chair 20">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Flexo Series
+                                </div>
+
+                                <h3>
+                                   INX 22
+                                </h3>
+
+                                <p>
+                                    Premium Flexo executive chair
+                                    designed for professional workspaces.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+<!-- =========================
+                        PRIME
+                        ========================= -->
+
+                        <article class="product-card reveal"
+                                 data-category="prime">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    01
+                                </span>
+
+                                <img src="./images/inx23.webp"
+                                     alt="Prime Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Prime Series
+                                </div>
+
+                                <h3>
+                                   INX 23
+                                </h3>
+
+                                <p>
+                                    Contemporary executive seating
+                                    with refined design.
+                                </p>
+
+                            </div>
+
+                        </article>
+  <article class="product-card reveal"
+                                 data-category="prime">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    02
+                                </span>
+
+                                <img src="./images/inx24.jpeg"
+                                     alt="Prime Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Prime Series
+                                </div>
+
+                                <h3>
+                                   INX 24
+                                </h3>
+
+                                <p>
+                                    Contemporary executive seating
+                                    with refined design.
+                                </p>
+
+                            </div>
+
+                        </article>
+                          <article class="product-card reveal"
+                                 data-category="prime">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    03
+                                </span>
+
+                                <img src="./images/inx25.jpeg"
+                                     alt="Prime Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Prime Series
+                                </div>
+
+                                <h3>
+                                   INX 25
+                                </h3>
+
+                                <p>
+                                    Contemporary executive seating
+                                    with refined design.
+                                </p>
+
+                            </div>
+
+                        </article>
+                          <article class="product-card reveal"
+                                 data-category="prime">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   04
+                                </span>
+
+                                <img src="./images/inx26.jpeg"
+                                     alt="Prime Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Prime Series
+                                </div>
+
+                                <h3>
+                                   INX 26
+                                </h3>
+
+                                <p>
+                                    Contemporary executive seating
+                                    with refined design.
+                                </p>
+
+                            </div>
+
+                        </article>
+                          <article class="product-card reveal"
+                                 data-category="prime">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    05
+                                </span>
+
+                                <img src="./images/inx27.jpeg"
+                                     alt="Prime Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Prime Series
+                                </div>
+
+                                <h3>
+                                    INX 27
+                                </h3>
+
+                                <p>
+                                    Contemporary executive seating
+                                    with refined design.
+                                </p>
+
+                            </div>
+
+                        </article>
+                          <article class="product-card reveal"
+                                 data-category="prime">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    06
+                                </span>
+
+                                <img src="./images/inx28.jpeg"
+                                     alt="Prime Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Prime Series
+                                </div>
+
+                                <h3>
+                                    INX 28
+                                </h3>
+
+                                <p>
+                                    Contemporary executive seating
+                                    with refined design.
+                                </p>
+
+                            </div>
+
+                        </article>
+                          <article class="product-card reveal"
+                                 data-category="prime">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   07
+                                </span>
+
+                                <img src="./images/inx29.jpeg"
+                                     alt="Prime Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Prime Series
+                                </div>
+
+                                <h3>
+                                   INX 29
+                                </h3>
+
+                                <p>
+                                    Contemporary executive seating
+                                    with refined design.
+                                </p>
+
+                            </div>
+
+                        </article>
+                          <article class="product-card reveal"
+                                 data-category="prime">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    08
+                                </span>
+
+                                <img src="./images/inx30.jpeg"
+                                     alt="Prime Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Prime Series
+                                </div>
+
+                                <h3>
+                                    INX 30
+                                </h3>
+
+                                <p>
+                                    Contemporary executive seating
+                                    with refined design.
+                                </p>
+
+                            </div>
+
+                        </article>
+                          <article class="product-card reveal"
+                                 data-category="prime">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                   09
+                                </span>
+
+                                <img src="./images/inx31.jpeg"
+                                     alt="Prime Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Prime Series
+                                </div>
+
+                                <h3>
+                                    INX 31
+                                </h3>
+
+                                <p>
+                                    Contemporary executive seating
+                                    with refined design.
+                                </p>
+
+                            </div>
+
+                        </article>
+                          <article class="product-card reveal"
+                                 data-category="prime">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    10
+                                </span>
+
+                                <img src="./images/inx32.jpeg"
+                                     alt="Prime Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Prime Series
+                                </div>
+
+                                <h3>
+                                    INX 32
+                                </h3>
+
+                                <p>
+                                    Contemporary executive seating
+                                    with refined design.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+                        <!-- =========================
+                        COMFO
+                        ========================= -->
+
+                        <article class="product-card reveal"
+                                 data-category="comfo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    01
+                                </span>
+
+                                <img src="./images/inx33.jpeg"
+                                     alt="Comfo Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Comfo Series
+                                </div>
+
+                                <h3>
+                                    INX 33
+                                </h3>
+
+                                <p>
+                                    Comfortable executive seating
+                                    for modern corporate interiors.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="comfo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    02
+                                </span>
+
+                                <img src="./images/inx34.jpeg"
+                                     alt="Comfo Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Comfo Series
+                                </div>
+
+                                <h3>
+                                    INX 34
+                                </h3>
+
+                                <p>
+                                    Comfortable executive seating
+                                    for modern corporate interiors.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="comfo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    03
+                                </span>
+
+                                <img src="./images/inx35.jpeg"
+                                     alt="Comfo Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Comfo Series
+                                </div>
+
+                                <h3>
+                                    INX 35
+                                </h3>
+
+                                <p>
+                                    Comfortable executive seating
+                                    for modern corporate interiors.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="comfo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    04
+                                </span>
+
+                                <img src="./images/inx36.jpeg"
+                                     alt="Comfo Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Comfo Series
+                                </div>
+
+                                <h3>
+                                   INX 36
+                                </h3>
+
+                                <p>
+                                    Comfortable executive seating
+                                    for modern corporate interiors.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="comfo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    05
+                                </span>
+
+                                <img src="./images/inx37.jpeg"
+                                     alt="Comfo Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Comfo Series
+                                </div>
+
+                                <h3>
+                                   INX 37
+                                </h3>
+
+                                <p>
+                                    Comfortable executive seating
+                                    for modern corporate interiors.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="comfo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    06
+                                </span>
+
+                                <img src="./images/inx38.jpeg"
+                                     alt="Comfo Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Comfo Series
+                                </div>
+
+                                <h3>
+                                    INX 38
+                                </h3>
+
+                                <p>
+                                    Comfortable executive seating
+                                    for modern corporate interiors.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="comfo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    07
+                                </span>
+
+                                <img src="./images/inx39.jpeg"
+                                     alt="Comfo Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Comfo Series
+                                </div>
+
+                                <h3>
+                                    INX 39
+                                </h3>
+
+                                <p>
+                                    Comfortable executive seating
+                                    for modern corporate interiors.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="comfo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    08
+                                </span>
+
+                                <img src="./images/inx40.jpeg"
+                                     alt="Comfo Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Comfo Series
+                                </div>
+
+                                <h3>
+                                    INX 40
+                                </h3>
+
+                                <p>
+                                    Comfortable executive seating
+                                    for modern corporate interiors.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="comfo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    09
+                                </span>
+
+                                <img src="./images/inx41.jpeg"
+                                     alt="Comfo Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Comfo Series
+                                </div>
+
+                                <h3>
+                                    INX 41
+                                </h3>
+
+                                <p>
+                                    Comfortable executive seating
+                                    for modern corporate interiors.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="comfo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    10
+                                </span>
+
+                                <img src="./images/inx42.jpeg"
+                                     alt="Comfo Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Comfo Series
+                                </div>
+
+                                <h3>
+                                    INX 42
+                                </h3>
+
+                                <p>
+                                    Comfortable executive seating
+                                    for modern corporate interiors.
+                                </p>
+
+                            </div>
+
+                        </article>
+                        <article class="product-card reveal"
+                                 data-category="comfo">
+
+                            <div class="product-image">
+
+                                <span class="product-number">
+                                    11
+                                </span>
+
+                                <img src="./images/inx43.jpeg"
+                                     alt="Comfo Executive Chair">
+
+                            </div>
+
+                            <div class="product-info">
+
+                                <div class="product-category">
+                                    Comfo Series
+                                </div>
+
+                                <h3>
+                                    INX 43
+                                </h3>
+
+                                <p>
+                                    Comfortable executive seating
+                                    for modern corporate interiors.
+                                </p>
+
+                            </div>
+
+                        </article>
+
+                        <!-- =========================
+                        PREMIUM CHAIR
+                        ========================= -->
+
+                        <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">01</span>
+                                <img src="./images/premium-chair-01.jpg" alt="Premium Chair 1">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 01</h3>
+                                <p>Premium seating designed for comfort, style and professional spaces.</p>
+                            </div>
+                        </article>
+
+                        <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">02</span>
+                                <img src="./images/premium-chair-02.jpg" alt="Premium Chair 2">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 02</h3>
+                                <p>Elegant premium chair with a modern design for executive interiors.</p>
+                            </div>
+                        </article>
+
+                        <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">03</span>
+                                <img src="./images/premium-chair-03.jpg" alt="Premium Chair 3">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 03</h3>
+                                <p>Comfort-focused premium seating built for long working hours.</p>
+                            </div>
+                        </article>
+
+                        <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">04</span>
+                                <img src="./images/premium-chair-04.jpg" alt="Premium Chair 4">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 04</h3>
+                                <p>Contemporary premium seating with a refined professional finish.</p>
+                            </div>
+                        </article>
+
+                        <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">05</span>
+                                <img src="./images/premium-chair-05.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 05</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+                           <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">06</span>
+                                <img src="./images/premium-chair-06.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 06</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+                           <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">07</span>
+                                <img src="./images/premium-chair-07.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 07</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+                           <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">08</span>
+                                <img src="./images/premium-chair-08.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 08</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+                           <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">09</span>
+                                <img src="./images/premium-chair-09.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 09</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+                           <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">10</span>
+                                <img src="./images/premium-chair-10.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 10</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+                           <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">11</span>
+                                <img src="./images/premium-chair-11.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 11</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+                           <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">12</span>
+                                <img src="./images/premium-chair-12.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 12</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+                           <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">13</span>
+                                <img src="./images/premium-chair-13.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 13</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+                           <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">14</span>
+                                <img src="./images/premium-chair-14.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 14</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+                           <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">15</span>
+                                <img src="./images/premium-chair-15.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 15</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+                           <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">16</span>
+                                <img src="./images/premium-chair-16.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 16</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+                           <article class="product-card reveal" data-category="premium-chair">
+                            <div class="product-image">
+                                <span class="product-number">17</span>
+                                <img src="./images/premium-chair-17.jpg" alt="Premium Chair 5">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Premium Chair</div>
+                                <h3>Premium Chair 17</h3>
+                                <p>Premium-quality chair designed to complement modern workspaces.</p>
+                            </div>
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+COMPANY
+========================= -->
+
+<section class="company" id="company">
+
+    <div class="container">
+
+        <div class="company-grid">
+
+            <div class="company-image reveal">
+
+                <img src="images/company-img.jpg"
+                     alt="Furniture manufacturing">
+
+            </div>
+
+            <div class="company-content reveal">
+
+                <div class="eyebrow">
+                    Our Company
+                </div>
+
+                <h2>
+                    Crafting Furniture<br>
+                    With <span>Purpose.</span>
+                </h2>
+
+                <p>
+                    Our manufacturing process combines
+                    modern technology, skilled craftsmanship
+                    and strict quality control.
+                </p>
+
+                <p>
+                    We believe furniture should not only look
+                    beautiful but also perform well and last
+                    for years.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+VIDEO
+========================= -->
+
+<section class="video-section">
+
+    <video autoplay muted loop playsinline>
+
+        <source src="furniture-video.mp4"
+                type="video/mp4">
+
+    </video>
+
+    <div class="video-overlay">
+
+        <h2>
+            MADE<br>
+            <span>WITH</span><br>
+            PURPOSE.
+        </h2>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+GALLERY
+========================= -->
+
+<section class="gallery" id="gallery">
+
+    <div class="container">
+
+        <div class="section-heading reveal">
+
+            <div>
+
+                <div class="eyebrow">
+                    Gallery
+                </div>
+
+                <h2 class="section-title">
+                    Our Furniture<br>
+                    <span>In Space.</span>
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="gallery-grid">
+
+            <div class="gallery-item reveal">
+
+                <img src="images/gallery-1.jpg"
+                     alt="Living Furniture">
+
+                <div class="gallery-label">
+                    Living
+                </div>
+
+            </div>
+
+            <div class="gallery-item reveal">
+
+                <img src="images/gallery-2.jpg"
+                     alt="Dining Furniture">
+
+                <div class="gallery-label">
+                    Dining
+                </div>
+
+            </div>
+
+            <div class="gallery-item reveal">
+
+                <img src="images/gallery-3.jpg"
+                     alt="Bedroom Furniture">
+
+                <div class="gallery-label">
+                    Bedroom
+                </div>
+
+            </div>
+
+            <div class="gallery-item reveal">
+
+                <img src="images/gallery-4.jpg"
+                     alt="Office Furniture">
+
+                <div class="gallery-label">
+                    Office
+                </div>
+
+            </div>
+
+            <div class="gallery-item reveal">
+
+                <img src="images/gallery-5.jpg"
+                     alt="Furniture Interior">
+
+                <div class="gallery-label">
+                    Interior
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+STATS
+========================= -->
+
+<section class="stats">
+
+    <div class="container">
+
+        <div class="stats-grid">
+
+            <div class="stat">
+
+                <strong>15+</strong>
+
+                <span>
+                    Years Experience
+                </span>
+
+            </div>
+
+            <div class="stat">
+
+                <strong>250+</strong>
+
+                <span>
+                    Projects
+                </span>
+
+            </div>
+
+            <div class="stat">
+
+                <strong>50+</strong>
+
+                <span>
+                    Products
+                </span>
+
+            </div>
+
+            <div class="stat">
+
+                <strong>20+</strong>
+
+                <span>
+                    Partners
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+CONTACT
+========================= -->
+
+<section class="contact" id="contact">
+
+    <div class="container">
+
+        <div class="contact-box reveal">
+
+            <h2>
+                Let's Create<br>
+                Something <span>Great.</span>
+            </h2>
+
+            <a href="mailto:info@yourcompany.com"
+               class="contact-button">
+                Contact Us →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <div class="footer-logo">
+
+                    <img src="./images/logo.png"
+                         alt="Furniture">
+
+                </div>
+
+                <p>
+                    Premium furniture manufacturing
+                    focused on design, quality and
+                    craftsmanship.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>Menu</h4>
+
+                <ul>
+
+                    <li>
+                        <a href="#home">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#company">
+                            Company
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products">
+                            Products
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#gallery">
+                            Gallery
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#contact">
+                            Contact Us
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- FOOTER PRODUCTS -->
+
+            <div>
+
+                <h4>
+                    Products
+                </h4>
+
+                <ul>
+
+                    <li>
+                        <a href="#products"
+                           class="footer-filter-link"
+                           data-filter="furniture">
+                            Furniture
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products"
+                           class="footer-filter-link"
+                           data-filter="home-furniture">
+                            Home Furniture
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products"
+                           class="footer-filter-link"
+                           data-filter="office-furniture">
+                            Office Furnitures
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products"
+                           class="footer-filter-link"
+                           data-filter="school-furniture">
+                            School &amp; Colleges Furniture
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products"
+                           class="footer-filter-link"
+                           data-filter="hospital-furniture">
+                            Hospital Furniture
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products"
+                           class="footer-filter-link"
+                           data-filter="executive">
+                            Executive Chairs
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products"
+                           class="footer-filter-link"
+                           data-filter="flexo">
+                            Flexo Series
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products"
+                           class="footer-filter-link"
+                           data-filter="prime">
+                            Prime Series
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products"
+                           class="footer-filter-link"
+                           data-filter="comfo">
+                            Comfo Series
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products"
+                           class="footer-filter-link"
+                           data-filter="premium-chair">
+                            Premium Chair
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Contact
+                </h4>
+
+                <ul>
+
+                    <li>
+                        <a href="mailto:info@yourcompany.com">
+                            info@yourcompany.com
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="tel:+919999999999">
+                            +91 99999 99999
+                        </a>
+                    </li>
+
+                    <li>
+                        Kerala, India
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Furniture Manufacturers
+            </span>
+
+            <span>
+                Design • Manufacturing • Quality
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- BACK TOP -->
+
+<button class="back-top"
+        id="backTop">
+    ↑
+</button>
+
+
+<script>
+
+/* =========================
+HEADER
+========================= */
+
+const header =
+    document.getElementById("header");
+
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY > 50){
+
+        header.classList.add("scrolled");
+
+    }else{
+
+        header.classList.remove("scrolled");
+
+    }
+
+});
+
+
+/* =========================
+MOBILE MENU
+========================= */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const mobileNav =
+    document.getElementById("mobileNav");
+
+menuBtn.addEventListener("click",()=>{
+
+    menuBtn.classList.toggle("active");
+
+    mobileNav.classList.toggle("active");
+
+    document.body.style.overflow =
+        mobileNav.classList.contains("active")
+        ? "hidden"
+        : "";
+
+});
+
+
+/* =========================
+PRODUCT ELEMENTS
+========================= */
+
+const categoryButtons =
+    document.querySelectorAll(".category-btn");
+
+const categoryParents =
+    document.querySelectorAll(".category-parent");
+
+const productCards =
+    document.querySelectorAll(".product-card");
+
+const productGrid =
+    document.getElementById("productGrid");
+
+const productsSection =
+    document.getElementById("products");
+
+const productMenu =
+    document.getElementById("productMenu");
+
+const productsMainLink =
+    document.getElementById("productsMainLink");
+
+const productScrollLeft =
+    document.getElementById("productScrollLeft");
+
+const productScrollRight =
+    document.getElementById("productScrollRight");
+
+const productResultTitle =
+    document.querySelector(".product-result-title");
+
+
+/* =========================
+CATEGORY GROUPS
+========================= */
+
+const categoryGroups = {
+
+    furniture:[
+        "home-furniture",
+        "office-furniture",
+        "school-furniture",
+        "hospital-furniture"
+    ],
+
+    executive:[
+        "flexo",
+        "prime",
+        "comfo"
+    ],
+
+    "premium-chair":[
+        "premium-chair"
+    ]
+
+};
+
+
+/* =========================
+CATEGORY NAMES
+========================= */
+
+const categoryNames = {
+
+    furniture:"Furniture",
+
+    "home-furniture":"Home Furniture",
+
+    "office-furniture":"Office Furnitures",
+
+    "school-furniture":"School & Colleges Furniture",
+
+    "hospital-furniture":"Hospital Furniture",
+
+    executive:"Executive Chairs",
+
+    flexo:"Flexo Series",
+
+    prime:"Prime Series",
+
+    comfo:"Comfo Series",
+
+    "premium-chair":"Premium Chair"
+
+};
+
+
+/* =========================
+PRODUCT ARROWS
+========================= */
+
+function updateProductArrows(){
+
+    if(!productGrid) return;
+
+    const maxScroll =
+        productGrid.scrollWidth -
+        productGrid.clientWidth;
+
+    if(productGrid.scrollLeft <= 5){
+
+        productScrollLeft.classList.add("disabled");
+
+    }else{
+
+        productScrollLeft.classList.remove("disabled");
+
+    }
+
+    if(productGrid.scrollLeft >= maxScroll - 5){
+
+        productScrollRight.classList.add("disabled");
+
+    }else{
+
+        productScrollRight.classList.remove("disabled");
+
+    }
+
+}
+
+
+/* =========================
+PRODUCT SCROLL LEFT
+========================= */
+
+productScrollLeft.addEventListener("click",()=>{
+
+    productGrid.scrollBy({
+
+        left:
+            -productGrid.clientWidth * .85,
+
+        behavior:"smooth"
+
+    });
+
+});
+
+
+/* =========================
+PRODUCT SCROLL RIGHT
+========================= */
+
+productScrollRight.addEventListener("click",()=>{
+
+    productGrid.scrollBy({
+
+        left:
+            productGrid.clientWidth * .85,
+
+        behavior:"smooth"
+
+    });
+
+});
+
+
+/* =========================
+MOUSE WHEEL PRODUCT SCROLL
+========================= */
+
+productGrid.addEventListener("wheel",(event)=>{
+
+    if(
+        Math.abs(event.deltaY) >
+        Math.abs(event.deltaX)
+    ){
+
+        event.preventDefault();
+
+        productGrid.scrollLeft +=
+            event.deltaY;
+
+    }
+
+},{passive:false});
+
+
+/* =========================
+PRODUCT SCROLL
+========================= */
+
+productGrid.addEventListener(
+    "scroll",
+    updateProductArrows,
+    {passive:true}
+);
+
+window.addEventListener(
+    "resize",
+    updateProductArrows
+);
+
+
+/* =========================
+UPDATE PRODUCT TITLE
+========================= */
+
+function updateProductTitle(category){
+
+    if(!productResultTitle) return;
+
+    productResultTitle.innerHTML =
+        categoryNames[category] +
+        ' <span>→</span>';
+
+}
+
+
+/* =========================
+FILTER PRODUCTS
+========================= */
+
+function filterProducts(category){
+
+    /* CHILD ACTIVE */
+
+    categoryButtons.forEach(button=>{
+
+        button.classList.toggle(
+            "active",
+            button.dataset.category === category
+        );
+
+    });
+
+
+    /* PARENT ACTIVE */
+
+    categoryParents.forEach(parent=>{
+
+        const group =
+            parent.dataset.group;
+
+        const isActive =
+            category === group ||
+            (
+                categoryGroups[group] &&
+                categoryGroups[group].includes(category)
+            );
+
+        parent.classList.toggle(
+            "active",
+            isActive
+        );
+
+    });
+
+
+    /* PRODUCTS */
+
+    productCards.forEach(card=>{
+
+        const cardCategory =
+            card.dataset.category;
+
+        let shouldShow = false;
+
+
+        /* MAIN CATEGORY */
+
+        if(categoryGroups[category]){
+
+            shouldShow =
+                categoryGroups[category].includes(
+                    cardCategory
+                );
+
+        }
+
+        /* SUB CATEGORY */
+
+        else{
+
+            shouldShow =
+                cardCategory === category;
+
+        }
+
+
+        if(shouldShow){
+
+            card.classList.remove("hide");
+
+            card.style.display = "block";
+
+            card.style.opacity = "0";
+
+            card.style.transform =
+                "translateY(20px)";
+
+            requestAnimationFrame(()=>{
+
+                card.style.transition =
+                    "opacity .45s ease, transform .45s ease";
+
+                card.style.opacity = "1";
+
+                card.style.transform =
+                    "translateY(0)";
+
+            });
+
+        }else{
+
+            card.classList.add("hide");
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+
+    updateProductTitle(category);
+
+
+    /* RESET HORIZONTAL SCROLL */
+
+    productGrid.scrollTo({
+
+        top:0,
+
+        left:0,
+
+        behavior:"auto"
+
+    });
+
+
+    setTimeout(()=>{
+
+        updateProductArrows();
+
+    },500);
+
+}
+
+
+/* =========================
+HIDE ALL PRODUCTS
+========================= */
+
+function hideAllProducts(){
+
+    categoryButtons.forEach(button=>{
+
+        button.classList.remove("active");
+
+    });
+
+    categoryParents.forEach(parent=>{
+
+        parent.classList.remove("active");
+
+    });
+
+    productCards.forEach(card=>{
+
+        card.classList.add("hide");
+
+        card.style.display = "none";
+
+        card.style.opacity = "0";
+
+        card.style.transform =
+            "translateY(20px)";
+
+    });
+
+    if(productResultTitle){
+
+        productResultTitle.innerHTML =
+            'Select a category <span>→</span>';
+
+    }
+
+}
+
+
+/* =========================
+SCROLL TO PRODUCTS
+========================= */
+
+function scrollToProducts(){
+
+    if(!productsSection) return;
+
+    const headerHeight =
+        header
+        ? header.offsetHeight
+        : 0;
+
+    const sectionTop =
+        productsSection.getBoundingClientRect().top +
+        window.pageYOffset -
+        headerHeight;
+
+    window.scrollTo({
+
+        top:sectionTop,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =========================
+PRODUCT MAIN MENU
+========================= */
+
+productsMainLink.addEventListener(
+    "click",
+    (event)=>{
+
+        event.preventDefault();
+
+        if(window.innerWidth > 1100){
+
+            const isOpen =
+                productMenu.classList.contains("open");
+
+            if(!isOpen){
+
+                productMenu.classList.add("open");
+
+            }else{
+
+                productMenu.classList.remove("open");
+
+            }
+
+        }else{
+
+            mobileNav.classList.remove("active");
+
+            menuBtn.classList.remove("active");
+
+            document.body.style.overflow="";
+
+            scrollToProducts();
+
+        }
+
+    }
+);
+
+
+/* =========================
+PRODUCT FILTER LINKS
+========================= */
+
+document.querySelectorAll(
+    ".product-filter-link"
+).forEach(link=>{
+
+    link.addEventListener(
+        "click",
+        (event)=>{
+
+            event.preventDefault();
+
+            const category =
+                link.dataset.filter;
+
+            filterProducts(category);
+
+            productMenu.classList.remove(
+                "open"
+            );
+
+            document.querySelectorAll(
+                ".product-dropdown-item"
+            ).forEach(item=>{
+
+                item.classList.remove("open");
+
+            });
+
+            mobileNav.classList.remove(
+                "active"
+            );
+
+            menuBtn.classList.remove(
+                "active"
+            );
+
+            document.body.style.overflow="";
+
+            scrollToProducts();
+
+        }
+    );
+
+});
+
+
+/* =========================
+DESKTOP SUBMENU
+========================= */
+
+document.querySelectorAll(
+    ".product-dropdown-item"
+).forEach(item=>{
+
+    const mainItem =
+        item.querySelector(":scope > a");
+
+    if(!mainItem) return;
+
+    mainItem.addEventListener(
+        "click",
+        (event)=>{
+
+            event.preventDefault();
+
+            const category =
+                mainItem.dataset.filter;
+
+            if(category){
+
+                filterProducts(category);
+
+                productMenu.classList.remove(
+                    "open"
+                );
+
+                item.classList.remove(
+                    "open"
+                );
+
+                scrollToProducts();
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================
+CATEGORY PARENT BUTTONS
+========================= */
+
+categoryParents.forEach(parent=>{
+
+    parent.addEventListener(
+        "click",
+        ()=>{
+
+            const group =
+                parent.dataset.group;
+
+            filterProducts(group);
+
+            scrollToProducts();
+
+        }
+    );
+
+});
+
+
+/* =========================
+CATEGORY BUTTONS
+========================= */
+
+categoryButtons.forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+            filterProducts(
+                button.dataset.category
+            );
+
+            scrollToProducts();
+
+        }
+    );
+
+});
+
+
+/* =========================
+FOOTER FILTER
+========================= */
+
+document.querySelectorAll(
+    ".footer-filter-link"
+).forEach(link=>{
+
+    link.addEventListener(
+        "click",
+        (event)=>{
+
+            event.preventDefault();
+
+            const category =
+                link.dataset.filter;
+
+            filterProducts(category);
+
+            scrollToProducts();
+
+        }
+    );
+
+});
+
+
+/* =========================
+MOBILE NORMAL LINKS
+========================= */
+
+document.querySelectorAll(
+    ".mobile-nav > ul > li > a"
+).forEach(link=>{
+
+    if(
+        link.closest(
+            ".mobile-product-item"
+        )
+    ){
+
+        return;
+
+    }
+
+    link.addEventListener(
+        "click",
+        ()=>{
+
+            menuBtn.classList.remove(
+                "active"
+            );
+
+            mobileNav.classList.remove(
+                "active"
+            );
+
+            document.body.style.overflow="";
+
+        }
+    );
+
+});
+
+
+/* =========================
+CLICK OUTSIDE PRODUCT MENU
+========================= */
+
+document.addEventListener(
+    "click",
+    (event)=>{
+
+        if(
+            productMenu &&
+            !productMenu.contains(
+                event.target
+            )
+        ){
+
+            productMenu.classList.remove(
+                "open"
+            );
+
+            document.querySelectorAll(
+                ".product-dropdown-item"
+            ).forEach(item=>{
+
+                item.classList.remove(
+                    "open"
+                );
+
+            });
+
+        }
+
+    }
+);
+
+
+/* =========================
+SCROLL REVEAL
+========================= */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+const observer =
+    new IntersectionObserver(
+
+        entries=>{
+
+            entries.forEach(entry=>{
+
+                if(entry.isIntersecting){
+
+                    entry.target.classList.add(
+                        "active"
+                    );
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold:.08
+        }
+
+    );
+
+revealElements.forEach(el=>{
+
+    observer.observe(el);
+
+});
+
+
+/* =========================
+BACK TO TOP
+========================= */
+
+const backTop =
+    document.getElementById("backTop");
+
+window.addEventListener(
+    "scroll",
+    ()=>{
+
+        if(window.scrollY > 500){
+
+            backTop.classList.add(
+                "show"
+            );
+
+        }else{
+
+            backTop.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+backTop.addEventListener(
+    "click",
+    ()=>{
+
+        window.scrollTo({
+
+            top:0,
+
+            behavior:"smooth"
+
+        });
+
+    }
+);
+
+
+/* =========================
+ACTIVE NAV
+========================= */
+
+const sections =
+    document.querySelectorAll(
+        "section[id]"
+    );
+
+const navLinks =
+    document.querySelectorAll(
+        ".nav > a"
+    );
+
+window.addEventListener(
+    "scroll",
+    ()=>{
+
+        let current="";
+
+        sections.forEach(section=>{
+
+            const top =
+                section.offsetTop - 150;
+
+            if(window.scrollY >= top){
+
+                current =
+                    section.getAttribute(
+                        "id"
+                    );
+
+            }
+
+        });
+
+        navLinks.forEach(link=>{
+
+            link.classList.remove(
+                "active"
+            );
+
+            if(
+                link.getAttribute(
+                    "href"
+                )
+                === "#" + current
+            ){
+
+                link.classList.add(
+                    "active"
+                );
+
+            }
+
+        });
+
+    }
+);
+
+
+/* =========================
+INITIAL PRODUCT STATE
+========================= */
+
+hideAllProducts();
+
+
+/* =========================
+INITIAL ARROW STATE
+========================= */
+
+setTimeout(()=>{
+
+    updateProductArrows();
+
+},100);
+
+</script>
+
+
+<script>
+/* Three-image home hero slider */
+(() => {
+    const slider = document.getElementById("heroSlides");
+    if (!slider) return;
+
+    const slides = Array.from(slider.querySelectorAll(".hero-slide"));
+    const dots = Array.from(document.querySelectorAll("#heroSliderDots .hero-slider-dot"));
+    const prev = document.getElementById("heroPrev");
+    const next = document.getElementById("heroNext");
+    let current = 0;
+    let timer;
+
+    function showSlide(index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => slide.classList.toggle("active", i === current));
+        dots.forEach((dot, i) => dot.classList.toggle("active", i === current));
+    }
+
+    function startAutoSlide() {
+        clearInterval(timer);
+        timer = setInterval(() => showSlide(current + 1), 5000);
+    }
+
+    prev?.addEventListener("click", () => {
+        showSlide(current - 1);
+        startAutoSlide();
+    });
+
+    next?.addEventListener("click", () => {
+        showSlide(current + 1);
+        startAutoSlide();
+    });
+
+    dots.forEach((dot, i) => dot.addEventListener("click", () => {
+        showSlide(i);
+        startAutoSlide();
+    }));
+
+    slider.addEventListener("mouseenter", () => clearInterval(timer));
+    slider.addEventListener("mouseleave", startAutoSlide);
+    showSlide(0);
+    startAutoSlide();
+})();
+</script>
+
+</body>
+</html>
